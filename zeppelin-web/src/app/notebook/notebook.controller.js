@@ -510,6 +510,11 @@ function NotebookCtrl($scope, $route, $routeParams, $location, $rootScope,
     $scope.setConfig();
   };
 
+  $scope.setCronSchedulerIsolatedMode = function(isolated) {
+    $scope.note.config.cronShouldRunIsolated = isolated;
+    $scope.setConfig();
+  };
+
   /** Set cron expression for this note **/
   $scope.setCronScheduler = function(cronExpr) {
     if (cronExpr) {

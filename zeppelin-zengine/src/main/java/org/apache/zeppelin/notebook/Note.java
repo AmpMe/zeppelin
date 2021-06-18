@@ -160,6 +160,7 @@ public class Note implements JsonSerializable {
 
   public Note() {
     generateId();
+    setCronShouldRunIsolated(true);
   }
 
   public Note(String path, String defaultInterpreterGroup, InterpreterFactory factory,
@@ -176,11 +177,13 @@ public class Note implements JsonSerializable {
     generateId();
 
     setCronSupported(zConf);
+    setCronShouldRunIsolated(true);
   }
 
   public Note(NoteInfo noteInfo) {
     this.id = noteInfo.getId();
     setPath(noteInfo.getPath());
+    setCronShouldRunIsolated(true);
   }
 
   public String getPath() {
@@ -239,6 +242,15 @@ public class Note implements JsonSerializable {
       }
     }
     return false;
+  }
+
+  public boolean isCronShouldRunIsolated() {
+    Object v = getConfig().get("cronShouldRunIsolated");
+    return null == v || "true".equals(v);
+  }
+
+  public void setCronShouldRunIsolated(boolean isolated) {
+    getConfig().put("cronShouldRunIsolated", isolated);
   }
 
   public boolean isPersonalizedMode() {

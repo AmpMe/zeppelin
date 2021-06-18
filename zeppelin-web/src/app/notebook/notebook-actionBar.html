@@ -309,6 +309,13 @@ limitations under the License.
                   {{note.info.cron}}
                 </p>
               </div>
+              <div>
+                <span>- Run Isolated</span>
+                <input type="checkbox"
+                       ng-model="note.config.cronShouldRunIsolated"
+                       ng-change="setCronSchedulerIsolatedMode(note.config.cronShouldRunIsolated)"
+                       dropdown-input ng-model-options="{ debounce: 1000 }" />
+              </div>
             </div>
           </li>
         </ul>

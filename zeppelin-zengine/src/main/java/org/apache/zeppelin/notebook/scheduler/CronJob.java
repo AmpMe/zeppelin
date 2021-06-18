@@ -59,7 +59,7 @@ public class CronJob implements org.quartz.Job {
                     StringUtils.isEmpty(cronExecutingRoles) ? null : cronExecutingRoles,
                     null);
     try {
-      note.runAll(authenticationInfo, true, true, new HashMap<>());
+      note.runAll(authenticationInfo, true, note.isCronShouldRunIsolated(), new HashMap<>());
       context.setResult(RESULT_SUCCEEDED);
     } catch (Exception e) {
       context.setResult(RESULT_FAILED);
